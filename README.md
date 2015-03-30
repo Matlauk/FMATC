@@ -1,4 +1,4 @@
-# FMATC
-Free Multi-Audio Track Capture
+### Welcome to the home of FMATC. (This page is under development.)
 
-The goal of this project is to create an easy way for others to record input and output devices to separate audio tracks.
+### Donations are gladly accepted.
+[Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TZ3DLLRSBBH5E)
