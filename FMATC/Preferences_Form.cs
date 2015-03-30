@@ -13,18 +13,9 @@ namespace FMATC
 {
     public partial class Preferences_Form : Form
     {
-        private static Preferences_Form _Instance = new Preferences_Form();
-        public static Preferences_Form Instance
-        {
-            get
-            {
-                return _Instance;
-            }
-        }
-
         bool AcceptNewHotkey = false;
 
-        private Preferences_Form()
+        public Preferences_Form()
         {
             InitializeComponent();
 
@@ -39,7 +30,7 @@ namespace FMATC
             if (this.AcceptNewHotkey)
             {
                 this.AcceptNewHotkey = false;
-                FMATC_Form.Instance.RecordHotKey = key;
+                FMATC_Form.RecordHotKey = key;
                 this.txtHotkey.Text = key.ToString();
                 Properties.Settings.Default.RecordHotKey = (int)key;
                 Properties.Settings.Default.Save();
@@ -60,7 +51,7 @@ namespace FMATC
             DialogResult dr = fbd.ShowDialog();
             if (dr == System.Windows.Forms.DialogResult.OK)
             {
-                FMATC_Form.Instance.OutputLocation = fbd.SelectedPath;
+                FMATC_Form.OutputLocation = fbd.SelectedPath;
                 this.lblOutputLocation.Text = fbd.SelectedPath;
                 Properties.Settings.Default.OutputLocation = fbd.SelectedPath;
                 Properties.Settings.Default.Save();

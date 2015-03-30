@@ -31,7 +31,7 @@ namespace FMATC
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(FMATC_Form.Instance);
+            Application.Run(new FMATC_Form());
 
             UnhookWindowsHookEx(_hookID);
         }

@@ -18,20 +18,11 @@ namespace FMATC
     public partial class FMATC_Form : Form
     {
         private bool Recording = false;
-        public Keys RecordHotKey = (Keys)Properties.Settings.Default.RecordHotKey;
-        public string OutputLocation = Properties.Settings.Default.OutputLocation;
+        public static Keys RecordHotKey = (Keys)Properties.Settings.Default.RecordHotKey;
+        public static string OutputLocation = Properties.Settings.Default.OutputLocation;
         private List<Device> RecordingDevices;
 
-        private static FMATC_Form _Instance = new FMATC_Form();
-        public static FMATC_Form Instance
-        {
-            get
-            {
-                return _Instance;
-            }
-        }
-
-        private FMATC_Form()
+        public FMATC_Form()
         {
             Program.GlobalKeyDownEvent += Program_GlobalKeyDownEvent;
 
@@ -42,7 +33,7 @@ namespace FMATC
             this.lstOAVDevices.MouseDoubleClick += lstOAVDevices_MouseDoubleClick;
             this.lstOACDevices.MouseDoubleClick += lstOACDevices_MouseDoubleClick;
 
-            this.RecordHotKey = (Keys)Properties.Settings.Default.RecordHotKey;
+            FMATC_Form.RecordHotKey = (Keys)Properties.Settings.Default.RecordHotKey;
         }
 
         void Program_GlobalKeyDownEvent(Keys key)
@@ -79,7 +70,7 @@ namespace FMATC
 
             foreach (Device device in this.RecordingDevices)
             {
-                device.StartRecording(this.OutputLocation);
+                device.StartRecording(FMATC_Form.OutputLocation);
             }
         }
 
@@ -226,7 +217,7 @@ namespace FMATC
 
         private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Preferences_Form.Instance.ShowDialog();
+            new Preferences_Form().ShowDialog();
         }
     }
 }
