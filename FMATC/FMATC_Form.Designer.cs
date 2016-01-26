@@ -43,6 +43,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_Record = new System.Windows.Forms.Button();
             this.gbOutputDevices.SuspendLayout();
             this.gbInputDevices.SuspendLayout();
             this.MenuBar.SuspendLayout();
@@ -172,7 +173,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             // 
             // editToolStripMenuItem
@@ -186,15 +187,27 @@
             // preferencesToolStripMenuItem
             // 
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.preferencesToolStripMenuItem.Text = "&Preferences";
             this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.preferencesToolStripMenuItem_Click);
+            // 
+            // btn_Record
+            // 
+            this.btn_Record.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Record.Location = new System.Drawing.Point(12, 413);
+            this.btn_Record.Name = "btn_Record";
+            this.btn_Record.Size = new System.Drawing.Size(619, 50);
+            this.btn_Record.TabIndex = 11;
+            this.btn_Record.Text = "START RECORDING";
+            this.btn_Record.UseVisualStyleBackColor = true;
+            this.btn_Record.Click += new System.EventHandler(this.btn_Record_Click);
             // 
             // FMATC_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(643, 419);
+            this.ClientSize = new System.Drawing.Size(643, 477);
+            this.Controls.Add(this.btn_Record);
             this.Controls.Add(this.gbOutputDevices);
             this.Controls.Add(this.gbInputDevices);
             this.Controls.Add(this.MenuBar);
@@ -231,6 +244,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
+        private System.Windows.Forms.Button btn_Record;
     }
 }
 

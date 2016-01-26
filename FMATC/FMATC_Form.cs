@@ -52,6 +52,11 @@ namespace FMATC
             base.WndProc(ref m);
         }
 
+        private void btn_Record_Click(object sender, EventArgs e)
+        {
+            ToggleRecording();
+        }
+
         private void ToggleRecording()
         {
             this.Recording = !this.Recording;
@@ -64,14 +69,25 @@ namespace FMATC
             {
                 this.StopRecording();
             }
+
+            this.MenuBar.Enabled = !Recording;
+
+            if (Recording)
+            {
+                this.btn_Record.BackColor = Color.Red;
+                this.btn_Record.ForeColor = Color.White;
+                this.btn_Record.Text = "STOP RECORDING";
+            }
+            else
+            {
+                this.btn_Record.BackColor = Button.DefaultBackColor;
+                this.btn_Record.ForeColor = Button.DefaultForeColor;
+                this.btn_Record.Text = "START RECORDING";
+            }
         }
 
         private void StartRecording()
         {
-            this.MenuBar.BackColor = Color.Red;
-
-            this.Enabled = false;
-
             this.RecordingDevices = new List<Device>();
             RecordingDevices.AddRange(this.lstIACDevices.Items.Cast<Device>());
             RecordingDevices.AddRange(this.lstOACDevices.Items.Cast<Device>());
@@ -89,10 +105,6 @@ namespace FMATC
 
         private void StopRecording()
         {
-            this.MenuBar.BackColor = MenuStrip.DefaultBackColor;
-
-            this.Enabled = true;
-
             foreach (Device device in this.RecordingDevices)
             {
                 device.StopRecording();
@@ -152,6 +164,9 @@ namespace FMATC
 
         void lstIAVDevices_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (Recording)
+                return;
+
             int index = this.lstIAVDevices.IndexFromPoint(e.Location);
             if (index != -1)
             {
@@ -165,6 +180,9 @@ namespace FMATC
 
         void lstIACDevices_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (Recording)
+                return;
+
             int index = this.lstIACDevices.IndexFromPoint(e.Location);
             if (index != -1)
             {
@@ -178,6 +196,9 @@ namespace FMATC
 
         void lstOAVDevices_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (Recording)
+                return;
+
             int index = this.lstOAVDevices.IndexFromPoint(e.Location);
             if (index != -1)
             {
@@ -191,6 +212,9 @@ namespace FMATC
 
         void lstOACDevices_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (Recording)
+                return;
+
             int index = this.lstOACDevices.IndexFromPoint(e.Location);
             if (index != -1)
             {
