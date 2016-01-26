@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -17,6 +18,13 @@ namespace FMATC
 {
     public partial class FMATC_Form : Form
     {
+        [DllImport("user32.dll")] 
+        public static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vlc);
+        [DllImport("user32.dll")]
+        public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+        const int MYACTION_HOTKEY_ID = 1;
+        const int WM_HOTKEY = 0x0312;
+
         private bool Recording = false;
         public static Keys RecordHotKey = (Keys)Properties.Settings.Default.RecordHotKey;
         public static string OutputLocation = Properties.Settings.Default.OutputLocation;
@@ -24,8 +32,6 @@ namespace FMATC
 
         public FMATC_Form()
         {
-            Program.GlobalKeyDownEvent += Program_GlobalKeyDownEvent;
-
             InitializeComponent();
 
             this.lstIAVDevices.MouseDoubleClick += lstIAVDevices_MouseDoubleClick;
@@ -34,22 +40,29 @@ namespace FMATC
             this.lstOACDevices.MouseDoubleClick += lstOACDevices_MouseDoubleClick;
 
             FMATC_Form.RecordHotKey = (Keys)Properties.Settings.Default.RecordHotKey;
+            RegisterHotKey(this.Handle, MYACTION_HOTKEY_ID, 0, (int)RecordHotKey);
         }
 
-        void Program_GlobalKeyDownEvent(Keys key)
+        protected override void WndProc(ref Message m)
         {
-            if (key == RecordHotKey)
+            if (m.Msg == WM_HOTKEY && m.WParam.ToInt32() == MYACTION_HOTKEY_ID) 
             {
-                this.Recording = !this.Recording;
+                ToggleRecording();
+            }
+            base.WndProc(ref m);
+        }
 
-                if (this.Recording)
-                {
-                    this.StartRecording();
-                }
-                else
-                {
-                    this.StopRecording();
-                }
+        private void ToggleRecording()
+        {
+            this.Recording = !this.Recording;
+
+            if (this.Recording)
+            {
+                this.StartRecording();
+            }
+            else
+            {
+                this.StopRecording();
             }
         }
 
@@ -92,6 +105,8 @@ namespace FMATC
             {
                 this.StopRecording();
             }
+
+            UnregisterHotKey(this.Handle, MYACTION_HOTKEY_ID);
 
             base.OnClosed(e);
         }
