@@ -19,6 +19,7 @@ namespace FMATC
         {
             this.WaveIn_C = wic;
             this.DeviceName = this.WaveIn_C.ProductName;
+            this.DeviceNumber = deviceNumber;
         }
 
         public override void StartRecording(string fileDestination)
