@@ -1,5 +1,4 @@
-﻿using NAudio.CoreAudioApi;
-using NAudio.Wave;
+﻿using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,26 +6,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FMATC
+namespace FMATC.Core
 {
-    public class OutputDevice : Device
+    public class InputDevice : Device
     {
-        private MMDevice mMDevice;
-        private IWaveIn SourceStream;
+        private WaveInCapabilities WaveIn_C;
+        private WaveIn SourceStream;
+        private int DeviceNumber = -1;
 
-        public OutputDevice(MMDevice device)
+        public InputDevice(WaveInCapabilities wic, int deviceNumber)
             : base()
         {
-            this.mMDevice = device;
-            this.DeviceName = this.mMDevice.FriendlyName;
+            this.WaveIn_C = wic;
+            this.DeviceName = this.WaveIn_C.ProductName;
+            this.DeviceNumber = deviceNumber;
         }
 
         public override void StartRecording(string fileDestination)
         {
-            this.SourceStream = new WasapiLoopbackCapture(this.mMDevice);
+            this.SourceStream = new WaveIn();
+            this.SourceStream.DeviceNumber = this.DeviceNumber;
+            this.SourceStream.WaveFormat = 
+                new NAudio.Wave.WaveFormat(
+                    44100, 
+                    NAudio.Wave.WaveIn.GetCapabilities(this.DeviceNumber).Channels);
+
             this.SourceStream.DataAvailable += new EventHandler<WaveInEventArgs>(sourceStream_DataAvailable);
+
             this.WaveWriter = new WaveFileWriter(
-                Path.Combine(fileDestination, this.DeviceName + "_" + DateTime.Now.ToString("MMddyyyy-hhmmss") + ".wav"),
+                Path.Combine(fileDestination, this.DeviceName + "_" + DateTime.Now.ToString("MMddyyyy-hhmmss") + ".wav"), 
                 this.SourceStream.WaveFormat);
 
             this.SourceStream.StartRecording();

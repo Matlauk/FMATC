@@ -1,5 +1,6 @@
 NAudio is an open source .NET audio library written by Mark Heath (mark.heath@gmail.com)
 For more information, visit http://naudio.codeplex.com
+NAudio is now being hosted on GitHub http://github.com/naudio/NAudio
 
 THANKS
 ======
@@ -22,15 +23,18 @@ csechet
 ChunkWare Music Software
 CKing
 DaMacc
+Dirk Eckhardt
 Du10
 eejake52
 Florian Rosmann (filoe)
+Freefall
 Giawa
 Harald Petrovitsch
 Hfuy
 Iain McCowan
 Idael Cardaso 
 ioctlLR
+Ivan Kochurkin (KvanTTT)
 Jamie Michael Ewins
 jannera
 jbaker8935
@@ -38,8 +42,10 @@ jcameron23
 JoeGaggler
 jonahoffmann
 jontdelorme
+Jospin Software
 Justin Frankel
 K24A3
+Kamen Lichev
 Kassoul
 kevinxxx
 kzych

@@ -1,4 +1,4 @@
-﻿using NAudio.CoreAudioApi;
+﻿using FMATC.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -125,21 +125,8 @@ namespace FMATC
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            List<InputDevice> InSources = new List<InputDevice>();
-            List<OutputDevice> OutSources = new List<OutputDevice>();
-
-            for (int i = 0; i < NAudio.Wave.WaveIn.DeviceCount; i++)
-            {
-                InSources.Add(new InputDevice(NAudio.Wave.WaveIn.GetCapabilities(i), i));
-            }
-
-            MMDeviceEnumerator deviceEnum = new MMDeviceEnumerator();
-            MMDeviceCollection deviceCol = deviceEnum.EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active);
-
-            for (int i = 0; i < deviceCol.Count; i++)
-            {
-                OutSources.Add(new OutputDevice(deviceCol[i]));
-            }
+            List<InputDevice> InSources = Devices.GetInputDevices();
+            List<OutputDevice> OutSources = Devices.GetOutputDevices();
 
             List<string> ACID_Strings = Properties.Settings.Default.ActiveInputDevices.Split(',').ToList();
             List<string> ACOD_Strings = Properties.Settings.Default.ActiveOutputDevices.Split(',').ToList();
