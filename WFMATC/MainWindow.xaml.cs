@@ -42,7 +42,7 @@ namespace WFMATC
             InitializeComponent();
             RecordHotKey = Properties.Settings.Default.RecordHotKey;
             
-            Title += " " + "v1.0.0";
+            Title += " " + "v1.1.0";
         }
         
         protected override void OnClosed(EventArgs e)
