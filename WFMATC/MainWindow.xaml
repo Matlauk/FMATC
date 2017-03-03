@@ -1,0 +1,62 @@
+﻿<Window x:Class="WFMATC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WFMATC"
+        mc:Ignorable="d"
+        Title="FMATC" Height="516" Width="659" ResizeMode="NoResize" WindowStyle="ToolWindow"
+        Loaded="Window_Loaded">
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Height="23" Name="MenuBar" VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem x:Name="mi_Exit" Header="Exit" Click="mi_Exit_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem x:Name="mi_Preferences" Header="Preferences" Click="mi_Preferences_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="75" />
+            </Grid.RowDefinitions>
+            <GroupBox Header="Input Devices:" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Header="Available Devices:">
+                        <ListBox x:Name="lst_AvailableInputDevices" MouseDoubleClick="lst_AvailableInputDevices_MouseDoubleClick"></ListBox>
+                    </GroupBox>
+                    <GroupBox Header="Active Devices:" Grid.Column="1">
+                        <ListBox x:Name="lst_ActiveInputDevices" MouseDoubleClick="lst_ActiveInputDevices_MouseDoubleClick"></ListBox>
+                    </GroupBox>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Output Devices:" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Header="Available Devices:">
+                        <ListBox x:Name="lst_AvailableOutputDevices" MouseDoubleClick="lst_AvailableOutputDevices_MouseDoubleClick"></ListBox>
+                    </GroupBox>
+                    <GroupBox Header="Active Devices:" Grid.Column="1">
+                        <ListBox x:Name="lst_ActiveOutputDevices" MouseDoubleClick="lst_ActiveOutputDevices_MouseDoubleClick"></ListBox>
+                    </GroupBox>
+                </Grid>
+            </GroupBox>
+            <Button x:Name="btn_StartStopRecord" Grid.Column="0" Grid.Row="2" Margin="8" Grid.ColumnSpan="4" Click="btn_StartStopRecord_Click">
+                <Viewbox>
+                    <TextBlock x:Name="btn_StartStopRecordingText" FontFamily="Microsoft Sans Serif" FontSize="16" FontWeight="Bold" Margin="8">START RECORDING</TextBlock>
+                </Viewbox>
+            </Button>
+        </Grid>
+    </DockPanel>
+</Window>

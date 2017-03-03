@@ -1,0 +1,30 @@
+﻿<Window x:Name="PreferencesWindow" x:Class="WFMATC.PreferencesForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WFMATC"
+        mc:Ignorable="d"
+        Title="Preferences"
+        SizeToContent="Height"
+        Width="500"
+        WindowStyle="ToolWindow"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Loaded="PreferencesWindow_Loaded"
+        Closed="PreferencesWindow_Closed">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal" Margin="4">
+            <Label>Start/Stop Recording Hotkey:</Label>
+            <TextBox x:Name="txt_RecordingHotkey" Width="100" IsReadOnly="True" IsEnabled="False" Margin="4" TextAlignment="Center"></TextBox>
+            <Button Name="btn_EditHotKey" Click="btn_EditHotKey_Click" Width="64" Margin="4">Edit</Button>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="4">
+            <StackPanel Orientation="Horizontal">
+                <Label>Output Location:</Label>
+                <Button Name="btn_Browse" Width="64" Click="btn_Browse_Click" Margin="4">Browse</Button>
+            </StackPanel>
+            <Label x:Name="txt_OutputLocation" MinHeight="26"></Label>
+        </StackPanel>
+    </StackPanel>
+</Window>
